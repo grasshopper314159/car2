@@ -80,6 +80,9 @@ public class AcceleratorState extends AutomobileState
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 		if (context.getSpeed() < 50) {
 			context.updateSpeed(context.getSpeed() + 5);
+		} else {
+			context.changeCurrentState(DrivingState.instance());
+
 		}
 		display.displayTimeRemaining(context.getSpeed());
 	}
