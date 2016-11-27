@@ -25,7 +25,7 @@ package src;
  *
  */
 public class AcceleratorState extends AutomobileState
-		implements AccelerateListener, BrakeListener, TimerRanOutListener, TimerTickedListener, PowerOnListener {
+		implements AccelerateListener, BrakeListener, TimerTickedListener, PowerOnListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -35,7 +35,7 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void leave() {
 		AcceleratorManager.instance().removeAccelerateListener(this);
-		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
 		PowerOnManager.instance().removePowerOnListener(this);
 	}
@@ -90,11 +90,11 @@ public class AcceleratorState extends AutomobileState
 	/**
 	 * Process clock ticks Generates the timer runs out event
 	 */
-	@Override
-	public void timerRanOut(TimerRanOutEvent event) {
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-
-	}
+	// @Override
+	// public void timerRanOut(TimerRanOutEvent event) {
+	// display.displayTimeRemaining(Timer.instance().getTimeValue());
+	//
+	// }
 
 	@Override
 	public void powerOn(PowerOnEvent event) {
@@ -111,7 +111,7 @@ public class AcceleratorState extends AutomobileState
 		BrakeManager.instance().addBrakeListener(this);
 		display.accelerate();
 		display.displayTimeRemaining(context.getSpeed());
-		TimerRanOutManager.instance().addTimerRanOutListener(this);
+		// TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
 	}
 

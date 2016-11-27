@@ -51,12 +51,10 @@ public class Timer implements Observer {
 	}
 
 	@Override
-	public void update(Observable clock, Object value) {
-		if (--timeValue == 0) {
-			TimerRanOutManager.instance().processEvent(new TimerRanOutEvent(instance));
-		} else {
-			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
-		}
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
 
 	}
+
 }

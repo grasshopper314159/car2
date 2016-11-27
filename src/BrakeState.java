@@ -24,8 +24,8 @@ package src;
  * Represents the door opened state
  *
  */
-public class BrakeState extends AutomobileState implements AccelerateListener, ParkListener, DriveRequestListener,
-		BrakeListener, TimerRanOutListener, TimerTickedListener {
+public class BrakeState extends AutomobileState
+		implements AccelerateListener, ParkListener, DriveRequestListener, BrakeListener, TimerTickedListener {
 	private static BrakeState instance;
 
 	private BrakeState() {
@@ -37,7 +37,7 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 
 		AcceleratorManager.instance().removeAccelerateListener(this);
 		BrakeManager.instance().removeBrakeListener(this);
-		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
 
 	}
@@ -81,11 +81,11 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 		display.displayTimeRemaining(context.getSpeed());
 	}
 
-	@Override
-	public void timerRanOut(TimerRanOutEvent event) {
-		// TODO Auto-generated method stub
-
-	}
+	// @Override
+	// public void timerRanOut(TimerRanOutEvent event) {
+	// // TODO Auto-generated method stub
+	//
+	// }
 
 	/**
 	 * handle park event
