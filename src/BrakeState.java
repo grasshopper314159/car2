@@ -112,7 +112,7 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 		display.brake();
 		display.displayTimeRemaining(context.getSpeed());
 		TimerTickedManager.instance().addTimerTickedListener(this);
-
+		ParkManager.instance().addParkListener(this);
 	}
 
 }

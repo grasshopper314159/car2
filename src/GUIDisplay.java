@@ -38,6 +38,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 */
 	private GUIDisplay() {
 		frame = new SimpleDisplay();
+		frame.setSize(800, 100);
 		initialize();
 	}
 
@@ -55,7 +56,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		private JLabel powerStatus = new JLabel("Power Off");
 		private JLabel speedValue = new JLabel("Speed:  ");
 		private JLabel gearStatus = new JLabel("Park");
-		private JLabel drivingStatus = new JLabel("Stopped");
+		private JLabel drivingStatus = new JLabel("Stopped         ");
 
 		/**
 		 * Sets up the interface
@@ -84,6 +85,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 
 			// acceleratorPresser.addActionListener(GUIDisplay.this);
 			// brakePresser.addActionListener(GUIDisplay.this);
+
 			pack();
 			setVisible(true);
 		}
@@ -149,7 +151,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 */
 	@Override
 	public void stopped() {
-		frame.drivingStatus.setText("Stopped");
+		frame.drivingStatus.setText("Stopped         ");
 	}
 
 	@Override
