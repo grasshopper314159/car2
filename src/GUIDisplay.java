@@ -55,6 +55,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		private ParkButton parkButton = new ParkButton("park");
 		private JLabel powerStatus = new JLabel("Power Off");
 		private JLabel speedValue = new JLabel("Speed:  ");
+		private JLabel speedUnits = new JLabel("mph");
 		private JLabel gearStatus = new JLabel("Park");
 		private JLabel drivingStatus = new JLabel("Stopped         ");
 
@@ -74,6 +75,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 			getContentPane().add(acceleratorPresser);
 			getContentPane().add(brakePresser);
 			getContentPane().add(speedValue);
+			getContentPane().add(speedUnits);
 			getContentPane().add(drivingStatus);
 
 			onButton.addActionListener(GUIDisplay.this);

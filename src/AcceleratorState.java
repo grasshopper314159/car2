@@ -21,7 +21,7 @@ package src;
  */
 
 /**
- * Represents the door opened state
+ * Represents the accelerating state
  *
  */
 public class AcceleratorState extends AutomobileState
@@ -53,7 +53,7 @@ public class AcceleratorState extends AutomobileState
 	}
 
 	/**
-	 * Process door closed event
+	 * Process accelerating event
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
@@ -64,12 +64,17 @@ public class AcceleratorState extends AutomobileState
 
 	}
 
+	/**
+	 * brake method
+	 */
 	@Override
 	public void brake(BrakeEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(BrakeState.instance());
 	}
 
+	/**
+	 * timer ticked method
+	 */
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
@@ -90,7 +95,7 @@ public class AcceleratorState extends AutomobileState
 
 	@Override
 	public void powerOn(PowerOnEvent event) {
-		// TODO Auto-generated method stub
+		// Power on not valid from accelerating state
 
 	}
 
@@ -100,7 +105,6 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void run() {
 
-		// AcceleratorManager.instance().addAccelerateListener(this);
 		BrakeManager.instance().addBrakeListener(this);
 		display.accelerate();
 		display.displayTimeRemaining(context.getSpeed());

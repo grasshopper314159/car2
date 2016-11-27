@@ -39,6 +39,7 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 		BrakeManager.instance().removeBrakeListener(this);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
+
 	}
 
 	/**
@@ -70,11 +71,12 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
-		// display.displayTimeRemaining(Timer.instance().getTimeValue());
 		if (context.getSpeed() > 0) {
 			context.updateSpeed(context.getSpeed() - 5);
 		} else {
+			ParkManager.instance().addParkListener(this);
 			context.changeCurrentState(DrivingState.instance());
+
 		}
 		display.displayTimeRemaining(context.getSpeed());
 	}
@@ -107,12 +109,10 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 	public void run() {
 
 		AcceleratorManager.instance().addAccelerateListener(this);
-		// Timer.instance().setTimeValue(Timer.instance().getTimeValue() - 5);
-		// display.displayTimeRemaining(Timer.instance().getTimeValue());
 		display.brake();
 		display.displayTimeRemaining(context.getSpeed());
 		TimerTickedManager.instance().addTimerTickedListener(this);
-		ParkManager.instance().addParkListener(this);
+
 	}
 
 }
