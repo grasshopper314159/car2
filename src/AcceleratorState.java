@@ -73,8 +73,8 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
-		if (context.getSpeed()<60) {
-			context.updateSpeed(context.getSpeed()+5);
+		if (context.getSpeed() < 50) {
+			context.updateSpeed(context.getSpeed() + 5);
 		}
 		display.displayTimeRemaining(context.getSpeed());
 	}
