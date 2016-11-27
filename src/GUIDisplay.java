@@ -53,7 +53,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		private DriveButton driveButton = new DriveButton("drive");
 		private ParkButton parkButton = new ParkButton("park");
 		private JLabel powerStatus = new JLabel("Power Off");
-		private JLabel timerValue = new JLabel("Speed:  ");
+		private JLabel speedValue = new JLabel("Speed:  ");
 		private JLabel gearStatus = new JLabel("Park");
 		private JLabel drivingStatus = new JLabel("Stopped");
 
@@ -72,9 +72,9 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 			getContentPane().add(gearStatus);
 			getContentPane().add(acceleratorPresser);
 			getContentPane().add(brakePresser);
-			getContentPane().add(timerValue);
+			getContentPane().add(speedValue);
 			getContentPane().add(drivingStatus);
-			
+
 			onButton.addActionListener(GUIDisplay.this);
 			offButton.addActionListener(GUIDisplay.this);
 			driveButton.addActionListener(GUIDisplay.this);
@@ -137,7 +137,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 */
 	@Override
 	public void displayTimeRemaining(int value) {
-		frame.timerValue.setText("Speed " + value);
+		frame.speedValue.setText("Speed " + value);
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	public void accelerate() {
 		// TODO Auto-generated method stub
 		frame.drivingStatus.setText("Accelerator on");
-		frame.timerValue.setText("Speed " + context.getSpeed());
+		frame.speedValue.setText("Speed " + context.getSpeed());
 	}
 
 	/**
