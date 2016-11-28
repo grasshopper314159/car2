@@ -20,7 +20,7 @@ package src;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 /**
- * The button that represents door open
+ * The button that represents power on
  *
  */
 public class OnButton extends GUIButton {
@@ -35,7 +35,7 @@ public class OnButton extends GUIButton {
 	}
 
 	/**
-	 * Create the DoorOpenEvent and tell the manager that the button has been
+	 * Create the PowerOnEvent and tell the manager that the button has been
 	 * clicked.
 	 */
 	@Override

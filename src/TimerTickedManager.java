@@ -30,6 +30,11 @@ public class TimerTickedManager {
 	private TimerTickedManager() {
 	}
 
+	/**
+	 * Create instance of TimerTickedManager
+	 * 
+	 * @return instance
+	 */
 	public static TimerTickedManager instance() {
 		if (instance == null) {
 			instance = new TimerTickedManager();
@@ -37,14 +42,29 @@ public class TimerTickedManager {
 		return instance;
 	}
 
+	/**
+	 * Add TimerTickedListener
+	 * 
+	 * @param listener
+	 */
 	public void addTimerTickedListener(TimerTickedListener listener) {
 		listenerList.add(TimerTickedListener.class, listener);
 	}
 
+	/**
+	 * Remove TimerTickedListener
+	 * 
+	 * @param listener
+	 */
 	public void removeTimerTickedListener(TimerTickedListener listener) {
 		listenerList.remove(TimerTickedListener.class, listener);
 	}
 
+	/**
+	 * Process TimerTickedEvent event
+	 * 
+	 * @param event
+	 */
 	public void processEvent(TimerTickedEvent event) {
 		EventListener[] listeners = listenerList.getListeners(TimerTickedListener.class);
 		for (int index = 0; index < listeners.length; index++) {

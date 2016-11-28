@@ -21,7 +21,7 @@ package src;
  */
 
 /**
- * Represents the door closed state
+ * Represents the powerOn state
  *
  */
 public class PowerOnState extends AutomobileState implements DriveRequestListener, PowerOffListener, PowerOnListener {
@@ -31,6 +31,9 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 		instance = this;
 	}
 
+	/**
+	 * Remove listeners
+	 */
 	@Override
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(this);
@@ -51,28 +54,29 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 	}
 
 	/**
-	 * handle door open event
+	 * handle powerOff event
 	 * 
 	 */
-
 	@Override
 	public void powerOff(PowerOffEvent event) {
 		context.changeCurrentState(PowerOffState.instance());
 	}
 
 	/**
-	 * handle cook request
+	 * handle driveRequested event
 	 * 
 	 */
-
 	@Override
 	public void driveRequested(DriveRequestEvent event) {
 		context.changeCurrentState(DrivingState.instance());
 	}
 
+	/**
+	 * handle powerOn event
+	 * 
+	 */
 	@Override
 	public void powerOn(PowerOnEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(PowerOnState.instance());
 	}
 
@@ -85,10 +89,6 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 		DriveRequestManager.instance().addDriveRequestListener(instance);
 		PowerOffManager.instance().addPowerOffListener(instance);
 		display.powerOn();
-		// display.gearInPark();
-		// display.stopped();
-		// display.displayTimeRemaining();
-		// Timer.instance().setTimeValue(0);
 	}
 
 }

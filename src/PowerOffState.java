@@ -21,7 +21,7 @@ package src;
  */
 
 /**
- * Represents the door opened state
+ * Represents the powerOff state
  *
  */
 public class PowerOffState extends AutomobileState implements PowerOffListener, PowerOnListener {
@@ -31,6 +31,9 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 		instance = this;
 	}
 
+	/**
+	 * Remove listeners
+	 */
 	@Override
 	public void leave() {
 		PowerOffManager.instance().removePowerOffListener(this);
@@ -49,17 +52,18 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 	}
 
 	/**
-	 * Process door closed event
+	 * Process powerOff event
 	 */
 	@Override
 	public void powerOff(PowerOffEvent event) {
 		context.changeCurrentState(PowerOffState.instance());
-
 	}
 
+	/**
+	 * Process powerOn event
+	 */
 	@Override
 	public void powerOn(PowerOnEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(PowerOnState.instance());
 	}
 
@@ -69,8 +73,6 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 	@Override
 	public void run() {
 		PowerOnManager.instance().addPowerOnListener(this);
-		// display.gearInPark();
-		// display.stopped();
 		display.powerOff();
 		display.displayTimeRemaining(0);
 	}

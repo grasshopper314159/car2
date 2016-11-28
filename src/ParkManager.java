@@ -30,6 +30,11 @@ public class ParkManager {
 	private ParkManager() {
 	}
 
+	/**
+	 * Create instance of ParkManager
+	 * 
+	 * @return instance
+	 */
 	public static ParkManager instance() {
 		if (instance == null) {
 			instance = new ParkManager();
@@ -37,14 +42,29 @@ public class ParkManager {
 		return instance;
 	}
 
+	/**
+	 * Add ParkListener
+	 * 
+	 * @param listener
+	 */
 	public void addParkListener(ParkListener listener) {
 		listenerList.add(ParkListener.class, listener);
 	}
 
+	/**
+	 * Remove ParkListener
+	 * 
+	 * @param listener
+	 */
 	public void removeParkListener(ParkListener listener) {
 		listenerList.remove(ParkListener.class, listener);
 	}
 
+	/**
+	 * Process ParkEvent event
+	 * 
+	 * @param event
+	 */
 	public void processEvent(ParkEvent event) {
 		EventListener[] listeners = listenerList.getListeners(ParkListener.class);
 		for (int index = 0; index < listeners.length; index++) {

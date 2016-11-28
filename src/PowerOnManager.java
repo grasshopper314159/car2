@@ -30,6 +30,11 @@ public class PowerOnManager {
 	private PowerOnManager() {
 	}
 
+	/**
+	 * Create instance of PowerOnManager
+	 * 
+	 * @return instance
+	 */
 	public static PowerOnManager instance() {
 		if (instance == null) {
 			instance = new PowerOnManager();
@@ -37,14 +42,29 @@ public class PowerOnManager {
 		return instance;
 	}
 
+	/**
+	 * Add PowerOnListener
+	 * 
+	 * @param listener
+	 */
 	public void addPowerOnListener(PowerOnListener listener) {
 		listenerList.add(PowerOnListener.class, listener);
 	}
 
+	/**
+	 * Remove PowerOnListener
+	 * 
+	 * @param listener
+	 */
 	public void removePowerOnListener(PowerOnListener listener) {
 		listenerList.remove(PowerOnListener.class, listener);
 	}
 
+	/**
+	 * Process PowerOn event
+	 * 
+	 * @param event
+	 */
 	public void processEvent(PowerOnEvent event) {
 		EventListener[] listeners = listenerList.getListeners(PowerOnListener.class);
 		for (int index = 0; index < listeners.length; index++) {

@@ -20,7 +20,7 @@ package src;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 /**
- * The button that represents door open
+ * The button that represents power off
  *
  */
 public class OffButton extends GUIButton {
@@ -35,12 +35,11 @@ public class OffButton extends GUIButton {
 	}
 
 	/**
-	 * Create the DoorOpenEvent and tell the manager that the button has been
+	 * Create the PowerOffEvent and tell the manager that the button has been
 	 * clicked.
 	 */
 	@Override
 	public void inform(AutomobileDisplay source) {
-		// DoorOpenManager.instance().processEvent(new DoorOpenEvent(source));
 		PowerOffManager.instance().processEvent(new PowerOffEvent(source));
 	}
 }
