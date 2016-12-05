@@ -24,8 +24,8 @@ package src;
  * Represents the door opened state
  *
  */
-public class BrakeState extends AutomobileState implements AccelerateListener, ParkListener, DriveRequestListener,
-		BrakeListener, TimerRanOutListener, TimerTickedListener {
+public class BrakeState extends AutomobileState
+		implements AccelerateListener, ParkListener, DriveRequestListener, BrakeListener, TimerTickedListener {
 	private static BrakeState instance;
 
 	private BrakeState() {
@@ -37,8 +37,9 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 
 		AcceleratorManager.instance().removeAccelerateListener(this);
 		BrakeManager.instance().removeBrakeListener(this);
-		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
+
 	}
 
 	/**
@@ -70,20 +71,21 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
-		// display.displayTimeRemaining(Timer.instance().getTimeValue());
 		if (context.getSpeed() > 0) {
 			context.updateSpeed(context.getSpeed() - 5);
 		} else {
+			ParkManager.instance().addParkListener(this);
 			context.changeCurrentState(DrivingState.instance());
+
 		}
 		display.displayTimeRemaining(context.getSpeed());
 	}
 
-	@Override
-	public void timerRanOut(TimerRanOutEvent event) {
-		// TODO Auto-generated method stub
-
-	}
+	// @Override
+	// public void timerRanOut(TimerRanOutEvent event) {
+	// // TODO Auto-generated method stub
+	//
+	// }
 
 	/**
 	 * handle park event
@@ -107,8 +109,6 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 	public void run() {
 
 		AcceleratorManager.instance().addAccelerateListener(this);
-		// Timer.instance().setTimeValue(Timer.instance().getTimeValue() - 5);
-		// display.displayTimeRemaining(Timer.instance().getTimeValue());
 		display.brake();
 		display.displayTimeRemaining(context.getSpeed());
 		TimerTickedManager.instance().addTimerTickedListener(this);

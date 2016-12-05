@@ -30,6 +30,11 @@ public class PowerOffManager {
 	private PowerOffManager() {
 	}
 
+	/**
+	 * Create instance of PowerOffManager
+	 * 
+	 * @return instance
+	 */
 	public static PowerOffManager instance() {
 		if (instance == null) {
 			instance = new PowerOffManager();
@@ -37,14 +42,29 @@ public class PowerOffManager {
 		return instance;
 	}
 
+	/**
+	 * Add PowerOffListener
+	 * 
+	 * @param listener
+	 */
 	public void addPowerOffListener(PowerOffListener listener) {
 		listenerList.add(PowerOffListener.class, listener);
 	}
 
+	/**
+	 * Remove PowerOffListener
+	 * 
+	 * @param listener
+	 */
 	public void removePowerOffListener(PowerOffListener listener) {
 		listenerList.remove(PowerOffListener.class, listener);
 	}
 
+	/**
+	 * Process PowerOff event
+	 * 
+	 * @param event
+	 */
 	public void processEvent(PowerOffEvent event) {
 		EventListener[] listeners = listenerList.getListeners(PowerOffListener.class);
 		for (int index = 0; index < listeners.length; index++) {

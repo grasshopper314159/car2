@@ -45,7 +45,6 @@ public class DrivingState extends AutomobileState implements DriveRequestListene
 		PowerOnManager.instance().removePowerOnListener(this);
 		PowerOffManager.instance().removePowerOffListener(this);
 		AcceleratorManager.instance().removeAccelerateListener(this);
-		ParkManager.instance().removeParkListener(this);
 		BrakeManager.instance().removeBrakeListener(this);
 	}
 
@@ -116,7 +115,7 @@ public class DrivingState extends AutomobileState implements DriveRequestListene
 		Timer.instance().setTimeValue(0);
 		AcceleratorManager.instance().addAccelerateListener(this);
 		BrakeManager.instance().addBrakeListener(this);
-		ParkManager.instance().addParkListener(this);
+
 		display.gearInDrive();
 
 	}

@@ -31,6 +31,11 @@ public class Timer implements Observer {
 		Clock.instance().addObserver(instance);
 	}
 
+	/**
+	 * Create instance of Timer
+	 * 
+	 * @return instance
+	 */
 	public static Timer instance() {
 		if (instance == null) {
 			instance = new Timer();
@@ -38,25 +43,41 @@ public class Timer implements Observer {
 		return instance;
 	}
 
+	/**
+	 * 
+	 * Set the Timer value
+	 * 
+	 * @param value
+	 */
 	public void setTimeValue(int value) {
 		this.timeValue = value;
 	}
 
+	/**
+	 * 
+	 * Add the Timer value
+	 * 
+	 */
 	public void addTimeValue(int value) {
 		timeValue += value;
 	}
 
+	/**
+	 * 
+	 * Get the Timer value
+	 * 
+	 * @return timeValue
+	 */
 	public int getTimeValue() {
 		return timeValue;
 	}
 
+	/**
+	 * Update about the Observable
+	 */
 	@Override
-	public void update(Observable clock, Object value) {
-		if (--timeValue == 0) {
-			TimerRanOutManager.instance().processEvent(new TimerRanOutEvent(instance));
-		} else {
-			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
-		}
-
+	public void update(Observable arg0, Object arg1) {
+		TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
 	}
+
 }

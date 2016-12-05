@@ -40,7 +40,7 @@ public abstract class GUIButton extends JButton {
 	 * Tell the context that the button has been clicked.
 	 * 
 	 * @param context
-	 *            the Miucrowave context
+	 *            the Automobile context
 	 * @param display
 	 *            the GUI
 	 */

@@ -21,7 +21,7 @@ package src;
  */
 
 /**
- * Represents the door opened state
+ * Represents the park state
  *
  */
 public class ParkState extends AutomobileState implements ParkListener, PowerOffListener, DriveRequestListener {
@@ -31,6 +31,9 @@ public class ParkState extends AutomobileState implements ParkListener, PowerOff
 		instance = this;
 	}
 
+	/**
+	 * Remove listeners
+	 */
 	@Override
 	public void leave() {
 		ParkManager.instance().removeParkListener(this);
@@ -51,24 +54,26 @@ public class ParkState extends AutomobileState implements ParkListener, PowerOff
 	}
 
 	/**
-	 * Process door closed event
+	 * Process park event
 	 */
-
 	@Override
 	public void park(ParkEvent event) {
 		context.changeCurrentState(ParkState.instance());
-
 	}
 
+	/**
+	 * Process powerOff event
+	 */
 	@Override
 	public void powerOff(PowerOffEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(PowerOffState.instance());
 	}
 
+	/**
+	 * Process driveRequested event
+	 */
 	@Override
 	public void driveRequested(DriveRequestEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(DrivingState.instance());
 	}
 
@@ -82,7 +87,6 @@ public class ParkState extends AutomobileState implements ParkListener, PowerOff
 		display.gearInPark();
 		display.stopped();
 		display.displayTimeRemaining(0);
-
 	}
 
 }

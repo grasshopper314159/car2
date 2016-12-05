@@ -21,11 +21,11 @@ package src;
  */
 
 /**
- * Represents the door opened state
+ * Represents the accelerating state
  *
  */
 public class AcceleratorState extends AutomobileState
-		implements AccelerateListener, BrakeListener, TimerRanOutListener, TimerTickedListener, PowerOnListener {
+		implements AccelerateListener, BrakeListener, TimerTickedListener, PowerOnListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -35,7 +35,7 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void leave() {
 		AcceleratorManager.instance().removeAccelerateListener(this);
-		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
 		PowerOnManager.instance().removePowerOnListener(this);
 	}
@@ -53,7 +53,7 @@ public class AcceleratorState extends AutomobileState
 	}
 
 	/**
-	 * Process door closed event
+	 * Process accelerating event
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
@@ -64,17 +64,25 @@ public class AcceleratorState extends AutomobileState
 
 	}
 
+	/**
+	 * brake method
+	 */
 	@Override
 	public void brake(BrakeEvent event) {
-		// TODO Auto-generated method stub
 		context.changeCurrentState(BrakeState.instance());
 	}
 
+	/**
+	 * timer ticked method
+	 */
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 		if (context.getSpeed() < 50) {
 			context.updateSpeed(context.getSpeed() + 5);
+		} else {
+			context.changeCurrentState(DrivingState.instance());
+
 		}
 		display.displayTimeRemaining(context.getSpeed());
 	}
@@ -82,15 +90,15 @@ public class AcceleratorState extends AutomobileState
 	/**
 	 * Process clock ticks Generates the timer runs out event
 	 */
-	@Override
-	public void timerRanOut(TimerRanOutEvent event) {
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-
-	}
+	// @Override
+	// public void timerRanOut(TimerRanOutEvent event) {
+	// display.displayTimeRemaining(Timer.instance().getTimeValue());
+	//
+	// }
 
 	@Override
 	public void powerOn(PowerOnEvent event) {
-		// TODO Auto-generated method stub
+		// Power on not valid from accelerating state
 
 	}
 
@@ -100,11 +108,10 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void run() {
 
-		// AcceleratorManager.instance().addAccelerateListener(this);
 		BrakeManager.instance().addBrakeListener(this);
 		display.accelerate();
 		display.displayTimeRemaining(context.getSpeed());
-		TimerRanOutManager.instance().addTimerRanOutListener(this);
+		// TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
 	}
 

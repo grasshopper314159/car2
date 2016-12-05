@@ -12,7 +12,7 @@ public class ParkButton extends GUIButton {
 	}
 
 	/**
-	 * Create the DoorOpenEvent and tell the manager that the button has been
+	 * Create the ParkEvent and tell the manager that the button has been
 	 * clicked.
 	 */
 	@Override
