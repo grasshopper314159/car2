@@ -23,6 +23,14 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
+/**
+ * The Manager classes maintains a list of EventListener objects who want to be notified when this
+ * type of event occurs.  The eventState objects call the add/remove listener methods in this
+ * class to join or leave the list of eventlisteners for this type of event.  
+ * 
+ * The Managers are singletons and so are accessed as someManager.instance().someMethod()
+ */
+
 public class DriveRequestManager {
 	private EventListenerList listenerList = new EventListenerList();
 	private static DriveRequestManager instance;
@@ -30,6 +38,13 @@ public class DriveRequestManager {
 	private DriveRequestManager() {
 	}
 
+
+	/**
+	 * Create instance of DriveRequestManager
+	 * 
+	 * @return instance
+	 */
+	
 	public static DriveRequestManager instance() {
 		if (instance == null) {
 			instance = new DriveRequestManager();
@@ -37,14 +52,32 @@ public class DriveRequestManager {
 		return instance;
 	}
 
+	/**
+	 * Add DriveRequestListener
+	 * 
+	 * @param listener
+	 */
+	
 	public void addDriveRequestListener(DriveRequestListener listener) {
 		listenerList.add(DriveRequestListener.class, listener);
 	}
 
+	/**
+	 * Remove DriveRequestListener
+	 * 
+	 * @param listener
+	 */
+	
 	public void removeDriveRequestListener(DriveRequestListener listener) {
 		listenerList.remove(DriveRequestListener.class, listener);
 	}
 
+	/**
+	 * Process DriveRequestListener event
+	 * 
+	 * @param event
+	 */
+	
 	public void processEvent(DriveRequestEvent event) {
 		EventListener[] listeners = listenerList.getListeners(DriveRequestListener.class);
 		for (int index = 0; index < listeners.length; index++) {

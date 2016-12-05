@@ -23,6 +23,14 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
+/**
+ * The Manager classes maintains a list of EventListener objects who want to be notified when this
+ * type of event occurs.  The eventState objects call the add/remove listener methods in this
+ * class to join or leave the list of eventlisteners for this type of event.  
+ * 
+ * The Managers are singletons and so are accessed as someManager.instance().someMethod()
+ */
+
 public class BrakeManager {
 
 	private EventListenerList listenerList = new EventListenerList();
@@ -31,6 +39,12 @@ public class BrakeManager {
 	private BrakeManager() {
 	}
 
+	/**
+	 * Create instance of BrakeManager
+	 * 
+	 * @return instance
+	 */
+	
 	public static BrakeManager instance() {
 		if (instance == null) {
 			instance = new BrakeManager();
@@ -38,14 +52,32 @@ public class BrakeManager {
 		return instance;
 	}
 
+	/**
+	 * Add BrakeListener
+	 * 
+	 * @param listener
+	 */	
+	
 	public void addBrakeListener(BrakeListener listener) {
 		listenerList.add(BrakeListener.class, listener);
 	}
+	
+	/**
+	 * Remove BrakeListener
+	 * 
+	 * @param listener
+	 */
 
 	public void removeBrakeListener(BrakeListener listener) {
 		listenerList.remove(BrakeListener.class, listener);
 	}
 
+	/**
+	 * Process BrakeListener event
+	 * 
+	 * @param event
+	 */
+	
 	public void processEvent(BrakeEvent event) {
 		EventListener[] listeners = listenerList.getListeners(BrakeListener.class);
 		for (int index = 0; index < listeners.length; index++) {
