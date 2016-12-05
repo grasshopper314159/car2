@@ -23,6 +23,14 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
+/**
+ * The Manager classes maintains a list of EventListener objects who want to be notified when this
+ * type of event occurs.  The eventState objects call the add/remove listener methods in this
+ * class to join or leave the list of eventlisteners for this type of event.  
+ * 
+ * The Managers are singletons and so are accessed as someManager.instance().someMethod()
+ */
+
 public class PowerOffManager {
 	private EventListenerList listenerList = new EventListenerList();
 	private static PowerOffManager instance;

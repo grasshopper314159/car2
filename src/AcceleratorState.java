@@ -32,6 +32,10 @@ public class AcceleratorState extends AutomobileState
 		instance = this;
 	}
 
+	/**
+	 * When the state is changed, this method is called to remove listeners
+	 */
+	
 	@Override
 	public void leave() {
 		AcceleratorManager.instance().removeAccelerateListener(this);
@@ -65,7 +69,8 @@ public class AcceleratorState extends AutomobileState
 	}
 
 	/**
-	 * brake method
+	 * This method changes the state from this to BrakeState
+	 * @param event: BrakeEvent
 	 */
 	@Override
 	public void brake(BrakeEvent event) {
@@ -74,6 +79,7 @@ public class AcceleratorState extends AutomobileState
 
 	/**
 	 * timer ticked method
+	 * @param event: TimerTickedEvent
 	 */
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
