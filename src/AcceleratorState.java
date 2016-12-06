@@ -25,7 +25,7 @@ package src;
  *
  */
 public class AcceleratorState extends AutomobileState
-		implements AccelerateListener, BrakeListener, TimerTickedListener, PowerOnListener {
+		implements  BrakeListener, TimerTickedListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -38,10 +38,8 @@ public class AcceleratorState extends AutomobileState
 	
 	@Override
 	public void leave() {
-		AcceleratorManager.instance().removeAccelerateListener(this);
-		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
-		PowerOnManager.instance().removePowerOnListener(this);
+		BrakeManager.instance().removeBrakeListener(this);
 	}
 
 	/**
@@ -57,19 +55,8 @@ public class AcceleratorState extends AutomobileState
 	}
 
 	/**
-	 * Process accelerating event
-	 */
-	@Override
-	public void accelerate(AccelerateEvent event) {
-
-		context.changeCurrentState(AcceleratorState.instance());
-
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-
-	}
-
-	/**
-	 * This method changes the state from this to BrakeState
+	 * This method changes the state from this state (AccelerateState)
+	 * to BrakeState
 	 * @param event: BrakeEvent
 	 */
 	@Override
@@ -79,6 +66,10 @@ public class AcceleratorState extends AutomobileState
 
 	/**
 	 * timer ticked method
+	 * The car's speed increases by 5 mph every tick 
+	 * of the timer.  If the speed is at 50, the state
+	 * changes to DrivingState
+	 * 
 	 * @param event: TimerTickedEvent
 	 */
 	@Override
@@ -94,30 +85,13 @@ public class AcceleratorState extends AutomobileState
 	}
 
 	/**
-	 * Process clock ticks Generates the timer runs out event
-	 */
-	// @Override
-	// public void timerRanOut(TimerRanOutEvent event) {
-	// display.displayTimeRemaining(Timer.instance().getTimeValue());
-	//
-	// }
-
-	@Override
-	public void powerOn(PowerOnEvent event) {
-		// Power on not valid from accelerating state
-
-	}
-
-	/**
 	 * Initialize the state
 	 */
 	@Override
 	public void run() {
-
 		BrakeManager.instance().addBrakeListener(this);
 		display.accelerate();
 		display.displayTimeRemaining(context.getSpeed());
-		// TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
 	}
 
