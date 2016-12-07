@@ -21,7 +21,7 @@ package src;
  */
 
 /**
- * Represents the door opened state
+ * Represents the brake state
  *
  */
 public class BrakeState extends AutomobileState
@@ -31,12 +31,13 @@ public class BrakeState extends AutomobileState
 	private BrakeState() {
 		instance = this;
 	}
-
+	/**
+	 * leave()
+	 * When the state is changed, this method is called to remove listeners
+	 */
 	@Override
 	public void leave() {
-
 		AcceleratorManager.instance().removeAccelerateListener(this);
-		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
 		ParkManager.instance().removeParkListener(this);
 	}
@@ -57,18 +58,25 @@ public class BrakeState extends AutomobileState
 	 * handle accelerate event
 	 * 
 	 */
-
 	@Override
 	public void accelerate(AccelerateEvent event) {
 		context.changeCurrentState(AcceleratorState.instance());
 	}
-
+	
+	/**
+	 * timer ticked method
+	 * The car's speed decreases by 5 mph every tick 
+	 * of the timer.  If the speed is at 0, it won't
+	 * subract any more
+	 * 
+	 * @param event: TimerTickedEvent
+	 */
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
 		if (context.getSpeed() > 0) {
 			context.updateSpeed(context.getSpeed() - 5);
 		} 
-		display.displayTimeRemaining(context.getSpeed());
+		display.displaySpeed(context.getSpeed());
 	}
 
 	/**
@@ -82,10 +90,13 @@ public class BrakeState extends AutomobileState
 		}
 	}
 
+	/**
+	 * handle driveRequested event
+	 * 
+	 */
 	@Override
 	public void driveRequested(DriveRequestEvent event) {
-		// TODO Auto-generated method stub
-		context.changeCurrentState(DrivingState.instance());
+		// TODO Auto-generated method stub		context.changeCurrentState(DrivingState.instance());
 	}
 
 	/**
@@ -97,11 +108,11 @@ public class BrakeState extends AutomobileState
 		AcceleratorManager.instance().addAccelerateListener(this);
 		ParkManager.instance().addParkListener(this);
 		display.brake();
-		display.displayTimeRemaining(context.getSpeed());
+		display.displaySpeed(context.getSpeed());
 		TimerTickedManager.instance().addTimerTickedListener(this);
 
 	}
 
 }
 
-// TEST
+

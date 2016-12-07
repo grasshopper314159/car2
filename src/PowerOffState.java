@@ -24,7 +24,7 @@ package src;
  * Represents the powerOff state
  *
  */
-public class PowerOffState extends AutomobileState implements PowerOffListener, PowerOnListener {
+public class PowerOffState extends AutomobileState implements PowerOnListener {
 	private static PowerOffState instance;
 
 	private PowerOffState() {
@@ -36,7 +36,7 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 	 */
 	@Override
 	public void leave() {
-		PowerOffManager.instance().removePowerOffListener(this);
+		PowerOnManager.instance().removePowerOnListener(this);
 	}
 
 	/**
@@ -49,14 +49,6 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 			instance = new PowerOffState();
 		}
 		return instance;
-	}
-
-	/**
-	 * Process powerOff event
-	 */
-	@Override
-	public void powerOff(PowerOffEvent event) {
-		context.changeCurrentState(PowerOffState.instance());
 	}
 
 	/**
@@ -74,7 +66,7 @@ public class PowerOffState extends AutomobileState implements PowerOffListener, 
 	public void run() {
 		PowerOnManager.instance().addPowerOnListener(this);
 		display.powerOff();
-		display.displayTimeRemaining(0);
+		display.displaySpeed(0);
 	}
 
 }

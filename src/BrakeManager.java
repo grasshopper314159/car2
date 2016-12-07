@@ -57,7 +57,6 @@ public class BrakeManager {
 	 * 
 	 * @param listener
 	 */	
-	
 	public void addBrakeListener(BrakeListener listener) {
 		listenerList.add(BrakeListener.class, listener);
 	}

@@ -38,14 +38,12 @@ public class DriveRequestManager {
 	private DriveRequestManager() {
 	}
 
-
 	/**
 	 * Create instance of DriveRequestManager
 	 * 
 	 * @return instance
 	 */
-	
-	public static DriveRequestManager instance() {
+		public static DriveRequestManager instance() {
 		if (instance == null) {
 			instance = new DriveRequestManager();
 		}

@@ -135,7 +135,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 *            value remaining
 	 */
 	@Override
-	public void displayTimeRemaining(int value) {
+	public void displaySpeed(int value) {
 		frame.speedValue.setText("Speed " + value);
 	}
 
