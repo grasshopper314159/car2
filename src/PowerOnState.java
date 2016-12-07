@@ -24,7 +24,7 @@ package src;
  * Represents the powerOn state
  *
  */
-public class PowerOnState extends AutomobileState implements DriveRequestListener, PowerOffListener, PowerOnListener {
+public class PowerOnState extends AutomobileState implements DriveRequestListener, PowerOffListener {
 	private static PowerOnState instance;
 
 	private PowerOnState() {
@@ -38,7 +38,6 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(this);
 		PowerOffManager.instance().removePowerOffListener(this);
-		PowerOnManager.instance().removePowerOnListener(this);
 	}
 
 	/**
@@ -69,15 +68,6 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 	@Override
 	public void driveRequested(DriveRequestEvent event) {
 		context.changeCurrentState(DrivingState.instance());
-	}
-
-	/**
-	 * handle powerOn event
-	 * 
-	 */
-	@Override
-	public void powerOn(PowerOnEvent event) {
-		context.changeCurrentState(PowerOnState.instance());
 	}
 
 	/**

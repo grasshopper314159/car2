@@ -23,14 +23,14 @@ import java.util.Observable;
 
 /**
  * Specifies what the display system should do. Note that the implementation has
- * a lot of freedom to choose its display.
+ * a lot of freedom to choose its display.  A superclass for GUIDisplay
  */
 public abstract class AutomobileDisplay extends Observable {
 	protected static AutomobileContext context;
 	protected static AutomobileDisplay instance;
 
 	/**
-	 * Initializes the context and instance
+	 * Initializes the display and instance
 	 */
 	protected AutomobileDisplay() {
 		instance = this;
@@ -52,42 +52,45 @@ public abstract class AutomobileDisplay extends Observable {
 	public void initialize() {
 		context.initialize();
 	}
-
-	public abstract void displayTimeRemaining(int time);
+	
+	/**
+	 * Display the speed
+	 * @param speed: int
+	 */
+	public abstract void displaySpeed(int speed);
 
 	/**
-	 * Indicate that the light is on
+	 * Indicate that the car is in drive
 	 */
 	public abstract void gearInDrive();
 
 	/**
-	 * Indicate that the light is off
+	 * Indicate that the car is in park
 	 */
 	public abstract void gearInPark();
 
 	/**
-	 * Indicate that the door is now closed
+	 * Indicate that the power is on
 	 */
 	public abstract void powerOn();
 
 	/**
-	 * Indicate that the door is now open
+	 * Indicate that the power is off
 	 */
 	public abstract void powerOff();
 
 	/**
-	 * indicate that cooking has begun
-	 */
-	// public abstract void startDriving();
-
-	/**
-	 * indicate that cooking has ended
+	 * indicate that the speed is zero
 	 */
 	public abstract void stopped();
-
+	
+	/**
+	 * indicate that the the car is braking
+	 */
 	public abstract void brake();
-
+	
+	/**
+	 * indicate that the the car is accelerating
+	 */
 	public abstract void accelerate();
-	// TODO Auto-generated method stub
-
 }

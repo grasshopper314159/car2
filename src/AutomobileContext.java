@@ -21,8 +21,8 @@ package src;
  */
 
 /**
- * The context is an obserer for the clock and stores the context info for
- * states
+ * The context maintains the speed, tracks the current state, handles leaving 
+ * and initializing the states, and maintains a reference to the display 
  *
  */
 public class AutomobileContext {
@@ -54,8 +54,8 @@ public class AutomobileContext {
 	}
 
 	/**
-	 * lets door closed state be the starting state adds the object as an
-	 * observable for clock
+	 * this is called by AutomobileDisplay to set the state to PowerOffState
+	 * when the program begins
 	 */
 	public void initialize() {
 		instance.changeCurrentState(PowerOffState.instance());
@@ -73,17 +73,26 @@ public class AutomobileContext {
 		currentState.run();
 	}
 
+	/**
+	 * getSpeed() returns the current speed
+	 * @return the current speed: int
+	 */
+	
 	public int getSpeed() {
 		return speed;
 	}
+	
+	/**
+	 * updateSpeed() changes the current speed
+	 * @param the new speed: int
+	 */
 	
 	public void updateSpeed(int speed) {
 		this.speed = speed;
 	}
 	/**
 	 * Gets the display
-	 * 
-	 * @return the display
+	 * 	 * @return the display
 	 */
 	public AutomobileDisplay getDisplay() {
 		return automobileDisplay;

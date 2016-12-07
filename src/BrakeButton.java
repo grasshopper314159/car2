@@ -20,7 +20,7 @@ package src;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 /**
- * The button that represents door open
+ * The button that is pressed to brak
  *
  */
 public class BrakeButton extends GUIButton {
@@ -35,7 +35,7 @@ public class BrakeButton extends GUIButton {
 	}
 
 	/**
-	 * Create the DoorOpenEvent and tell the manager that the button has been
+	 * Create the BrakeEvent and tell the manager that the button has been
 	 * clicked.
 	 */
 	@Override

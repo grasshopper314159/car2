@@ -74,14 +74,14 @@ public class AcceleratorState extends AutomobileState
 	 */
 	@Override
 	public void timerTicked(TimerTickedEvent event) {
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
+		display.displaySpeed(Timer.instance().getTimeValue());
 		if (context.getSpeed() < 50) {
 			context.updateSpeed(context.getSpeed() + 5);
 		} else {
 			context.changeCurrentState(DrivingState.instance());
 
 		}
-		display.displayTimeRemaining(context.getSpeed());
+		display.displaySpeed(context.getSpeed());
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class AcceleratorState extends AutomobileState
 	public void run() {
 		BrakeManager.instance().addBrakeListener(this);
 		display.accelerate();
-		display.displayTimeRemaining(context.getSpeed());
+		display.displaySpeed(context.getSpeed());
 		TimerTickedManager.instance().addTimerTickedListener(this);
 	}
 

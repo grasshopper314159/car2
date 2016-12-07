@@ -22,7 +22,6 @@ package src;
 /**
  * Super class for all states
  * 
- *
  */
 public abstract class AutomobileState {
 	protected static AutomobileContext context;
@@ -40,6 +39,9 @@ public abstract class AutomobileState {
 	 * Initializes the state
 	 */
 	public abstract void run();
-
+	
+	/**
+	 * Removes listeners when the state is exited
+	 */
 	public abstract void leave();
 }

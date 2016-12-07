@@ -21,15 +21,9 @@ package src;
  */
 import java.util.EventListener;
 
-/**
- * Any class may be a CookRequestListener to process cook requests
- * 
- * @author Brahma Dathan
- *
- */
 public interface DriveRequestListener extends EventListener {
 	/**
-	 * Processes cook requests
+	 * Processes drive requests
 	 * 
 	 * @param event
 	 */
